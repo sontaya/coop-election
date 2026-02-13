@@ -8,7 +8,7 @@
 
   <!-- Google Font: Source Sans Pro -->
   <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/style.css">
   <script src="<?php echo base_url()?>assets/admin/plugins/jquery/jquery.min.js"></script>
   <style>
+      * { font-family: 'Prompt', sans-serif; }
+
       input[type=checkbox]
       {
         /* Double-sized Checkboxes */
@@ -74,6 +76,52 @@
         .tick i{
           font-size:70px;
         }
+
+        /* Card overrides */
+        .card {
+          border-radius: 14px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+          border: 1px solid #e2e8f0;
+          overflow: hidden;
+        }
+        .card.card-primary .card-header {
+          background: linear-gradient(135deg, #3b82f6, #2563eb);
+          border-bottom: none;
+        }
+        .card.card-danger .card-header {
+          background: linear-gradient(135deg, #ef4444, #dc2626);
+          border-bottom: none;
+        }
+
+        /* Navbar override */
+        .navbar.bg-dark1 {
+          background: linear-gradient(135deg, #1e3a5f, #1e40af) !important;
+        }
+
+        /* Submit button */
+        .btn-vote-submit {
+          display: block;
+          width: 100%;
+          padding: 14px 24px;
+          background: linear-gradient(135deg, #22c55e, #16a34a);
+          color: #fff;
+          border: none;
+          border-radius: 12px;
+          font-size: 1.05rem;
+          font-weight: 600;
+          font-family: 'Prompt', sans-serif;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          box-shadow: 0 4px 14px rgba(22,163,74,0.3);
+        }
+        .btn-vote-submit:hover {
+          background: linear-gradient(135deg, #16a34a, #15803d);
+          transform: translateY(-1px);
+          box-shadow: 0 6px 20px rgba(22,163,74,0.4);
+        }
+        .btn-vote-submit:active {
+          transform: translateY(0);
+        }
 </style>
 
 
@@ -92,7 +140,10 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="text-center" style="color:#fff;font-size: 25px;">สหกรณ์ออมทรัพย์ มหาวิทยาลัยสวนดุสิต จำกัด</div>
+    <div style="color:#fff;">
+          <div style="font-size: 20px; font-weight: 600;">ลงคะแนนเลือกตั้งคณะกรรมการดำเนินการสหกรณ์ออมทรัพย์</div>
+          <div style="font-size: 14px; opacity: 0.85;">มหาวิทยาลัยสวนดุสิต จำกัด ประจำปี 2568</div>
+        </div>
    <ul class="navbar-nav mr-auto">
 
          <!-- <li class="nav-item active">
@@ -110,22 +161,9 @@
 
   <div class="container">
 
-   <div class="row">
-    <div class="col-12 text-center">
-      <div class="section-title mb-4 pb-2">
-        <h4 class="mb-1">ลงคะแนนเลือกตั้งคณะกรรมการดำเนินการสหกรณ์ออมทรัพย์</h4>
-        <p class="para-desc mx-auto mb-0 mt-0">มหาวิทยาลัยสวนดุสิต จำกัด ประจำปี 2568</p>
-        <p class="para-desc mx-auto mb-0 mt-0">
-
-        </p>
-
-      </div>
-    </div>
-
-  </div>
   <form action="" method="POST" id="frmvote">
-    <input type="hidden" name="otpcode" id="otpcode" value="<?php echo $this->session->userdata['otpcode']; ?>">
-    <input type="hidden" name="pcode" id="pcode" value="<?php echo $this->session->userdata['pcode']; ?>">
+    <input type="hidden" name="otpcode" id="otpcode" value="<?php echo $this->session->userdata('otpcode'); ?>">
+    <input type="hidden" name="pcode" id="pcode" value="<?php echo $this->session->userdata('pcode'); ?>">
     <!-- Group 1 -->
     <div class="row add_bottom_5">
       <div class="col-md-10">
@@ -339,7 +377,7 @@
 
 <div class="row add_bottom_15">
       <div class="col-md-10">
- <button type="button" class="btn btn-block btn-success" id="submit2"> บันทึกการลงคะแนน</button>
+ <button type="button" class="btn-vote-submit" id="submit2"><i class="fas fa-check-circle" style="margin-right:4px;"></i> บันทึกการลงคะแนน</button>
       </div>
     </div>
 </form>
