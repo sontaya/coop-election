@@ -4,11 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>การเลือกตั้งคณะกรรมการดำเนินการ สหกรณ์ออมทรัพย์ มหาวิทยาลัยสวนดุสิต จำกัด ประจำปี 2568</title>
+  <title>การเลือกตั้งคณะกรรมการดำเนินการ สหกรณ์ออมทรัพย์ มหาวิทยาลัยสวนดุสิต จำกัด ประจำปี 2569</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -18,10 +17,129 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/style.css">
   <style>
-    .bigText {
-        height:30px;
+    * { font-family: 'Prompt', sans-serif; }
+
+    /* Navbar override */
+    .navbar.bg-dark1 {
+      background: linear-gradient(135deg, #1e3a5f, #1e40af) !important;
     }
 
+    /* Card override */
+    .card {
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+    }
+    .card .card-header {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      border-bottom: none;
+      padding: 14px 20px;
+    }
+    .card .card-header .card-title {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    .card .card-header .card-title i {
+      margin-right: 6px;
+    }
+    .card .card-body {
+      padding: 36px 24px;
+    }
+
+    /* Form label */
+    .check-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #334155;
+      margin-bottom: 10px;
+    }
+    .check-label i {
+      margin-right: 4px;
+      color: #3b82f6;
+    }
+
+    /* Input */
+    .check-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      font-family: 'Prompt', sans-serif;
+      text-align: center;
+      letter-spacing: 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.7);
+      color: #1e293b;
+      outline: none;
+      transition: all 0.25s ease;
+      box-sizing: border-box;
+    }
+    .check-input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.15);
+      background: #fff;
+    }
+    .check-input::placeholder {
+      letter-spacing: 4px;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #94a3b8;
+    }
+
+    /* Button */
+    .btn-check-submit {
+      display: inline-block;
+      padding: 12px 40px;
+      margin-top: 20px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: 'Prompt', sans-serif;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    }
+    .btn-check-submit:hover {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+    .btn-check-submit:active {
+      transform: translateY(0);
+    }
+    .btn-check-submit i {
+      margin-right: 6px;
+    }
+
+    /* Navbar title */
+    .nav-title {
+      color: #fff;
+    }
+    .nav-title .main-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .nav-title .sub-title {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      padding: 16px;
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
   </style>
 
 </head>
@@ -32,7 +150,6 @@
 
     <a class="navbar-brand" href="<?php echo site_url()?>" title="logo SDU">
       <div class="logo">
-       <!-- <img src="<?php echo base_url()?>uploads/images/bkk_web_logo.jpg" alt="logo BMA" title="logo BMA">-->
        <img src="<?php echo base_url()?>uploads/sducoop.jpg" height="50" alt="SDU" title="SDU">
      </div>
    </a>
@@ -40,42 +157,36 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-   <div class="text-center" style="color:#fff;font-size: 25px;">สหกรณ์ออมทรัพย์ มหาวิทยาลัยสวนดุสิต จำกัด</div>
-
-
+    <div class="nav-title">
+      <div class="main-title">ตรวจสอบการใช้สิทธิเลือกตั้งคณะกรรมการดำเนินการสหกรณ์ออมทรัพย์</div>
+      <div class="sub-title">มหาวิทยาลัยสวนดุสิต จำกัด ประจำปี 2569</div>
+    </div>
       </div>
     </div>
   </nav>
 
   <div class="container">
 
-  <div class="row">
-      <div class="col-sm-12">
+  <div class="row justify-content-center">
+      <div class="col-sm-8 col-md-6">
 
-        <!-- /.login-logo -->
         <div class="card">
 					<div class="card-header">
-						<h3 class="card-title">ตรวจสอบการใช้สิทธิ</h3>
+						<h3 class="card-title"><i class="fas fa-search"></i> ตรวจสอบการใช้สิทธิ</h3>
 					</div>
-          <div class="card-body login-card-body" style="padding 100px 0px 100px 0px">
+          <div class="card-body">
 
-						<form >
-							<div class="row">
-								<div class="col"></div>
-								<div class="col">
-								<label for="username" class="control-label">กรอกรหัสการเลือกตั้ง</label>
-								<div class="input-group mb-3">
-									<input id="otpcode" name="otpcode" type="text" class="form-control1 form-control-lg" maxlength="5" autocomplete="off" placeholder="" style="text-align:center;" required value="31569">
-
+						<form>
+							<div class="row justify-content-center">
+								<div class="col-sm-10 col-md-8">
+								<label for="otpcode" class="check-label"><i class="fas fa-key"></i> กรอกรหัสการเลือกตั้ง</label>
+								<input id="otpcode" name="otpcode" type="text" class="check-input" maxlength="5" autocomplete="off" placeholder="XXXXX" required value="">
 								</div>
-								</div>
-								<div class="col"></div>
 							</div>
 
-
-							<div class="row">
+							<div class="row mt-3">
 								<div class="col-12 text-center">
-									<button type="button" class="btn btn-primary shadow" name="check_button" id="check_button">ตรวจสอบ</button>
+									<button type="button" class="btn-check-submit" name="check_button" id="check_button"><i class="fas fa-search"></i> ตรวจสอบ</button>
 								</div>
 							</div>
 
@@ -88,6 +199,9 @@
   </div>
 </div>
 
+<footer>
+  Copyright &copy; 2569 มหาวิทยาลัยสวนดุสิต
+</footer>
 
 
 <!-- jQuery -->

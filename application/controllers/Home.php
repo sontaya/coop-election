@@ -5,7 +5,7 @@ class Home extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        if (!isset($this->session->userdata['logged_in'])) 
+        if (!isset($this->session->userdata['logged_in']))
         {
             redirect('login');
         }
@@ -18,11 +18,11 @@ class Home extends MY_Controller {
 	public function index()
 	{
         $data['title'] = 'สหกรณ์ออมทรัพย์ มหาวิทยาลัยสวนดุสิต';
-        $data['candidates'] = $this->candidate_model->fetch_all();  
+        $data['candidates'] = $this->candidate_model->fetch_all();
 
-        $this->load->view('vote3',$data);	
+        $this->load->view('vote3',$data);
     }
-    
+
     function add_vote()
     {
         if($this->input->post('checkbox_value'))
@@ -41,8 +41,8 @@ class Home extends MY_Controller {
                 'vcount' =>$vcount,
                 'ip_address' =>$ip ,
                 'device' => $this->agent->platform(),
-                'ip_address' => get_myclient_ip(), 
-                'browser' => $this->agent->browser() . ' - ' .$this->agent->version(),                   
+                'ip_address' => get_myclient_ip(),
+                'browser' => $this->agent->browser() . ' - ' .$this->agent->version(),
                 'created_at' => date('Y-m-d H:i:s'),
             );
 
@@ -55,18 +55,18 @@ class Home extends MY_Controller {
                     if($idx){
                         for($count = 0; $count < count($id); $count++)
                         {
-                            $data =array(                                
+                            $data =array(
                                 'pcode' =>$pcode,
                                 'card_id' =>$card_id,
-                                'c_num' =>$id[$count],                            
+                                'c_num' =>$id[$count],
                                 'created_at' => date('Y-m-d H:i:s'),
                             );
-                           $this->vote_model->insert_vote_detail($data); 
-                        } 
-                    
+                           $this->vote_model->insert_vote_detail($data);
+                        }
+
                     }
                      //sendmail($this->session->userdata['email'],$this->session->userdata['fullname']);
-                    echo true; 
+                    echo true;
             }
 
         }
@@ -86,20 +86,20 @@ class Home extends MY_Controller {
         $cardid =$this->input->post('cardid');
         $pcode =$this->input->post('pcode');
         //$hrcode = $this->session->userdata['hrcode'];
-  
+
         if ($this->user_model->card_exists($cardid,$pcode) == TRUE) {
-           $data = array("status" => "ok", "message"=> "Sucess");            
+           $data = array("status" => "ok", "message"=> "Sucess");
             echo json_encode($data);
             //return FALSE;
         } else {
-            $data = array("status" => "error", "message"=> "Not Found.");           
+            $data = array("status" => "error", "message"=> "Not Found.");
             echo json_encode($data);
              //return TRUE;
-        }        
+        }
     }
 
     public function success() {
-        //clear session data        
+        //clear session data
         foreach (array_keys($this->session->userdata) as $key) {   $this->session->unset_userdata($key); }
         $this->session->sess_destroy();
         //redirect
@@ -109,47 +109,47 @@ class Home extends MY_Controller {
     public function write_logs(){
         $data=$id.'~'.$expense_type.'~'.$amount.'~'.$exp_date.'<br>';
         $todate= date('Y-m-d');
-        
+
         //if ( ! write_file(APPPATH."assets/login/log_$todate.txt", $data))
         if ( ! write_file(FCPATH .'/assets/login/log_'.$todate.'.txt', $data)){
            echo 'Unable to write the file';
         }
-        else{ 
+        else{
            echo 'File written!';
         }
     }
 
     function check_session(){
-        echo isset($this->session->userdata['logged_in']);   
+        echo isset($this->session->userdata['logged_in']);
     }
 
     public function election_check()
 	{
         $data['title'] = 'SDU eVote';
 
-        $this->load->view('election_check');	
+        $this->load->view('coop69/election_check');
     }
 
     public function get_profile()
     {
         $cardid =$this->input->post('cardid');
-        $profile = $this->user_model->get_profile_by_card_id($cardid);   
+        $profile = $this->user_model->get_profile_by_card_id($cardid);
         if($profile){
             $data = array(
                 'status' => true,
                 'profile' =>$profile,
                 'message'=> 'Success'
-            ); 
+            );
         }else{
             $data = array(
                 'status' => false,
                 'message'=> 'Not Found'
-            ); 
+            );
         }
-        
+
         echo json_encode($data);
     }
 
-    
-    
+
+
 }
