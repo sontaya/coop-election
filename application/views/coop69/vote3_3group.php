@@ -64,7 +64,7 @@
         .tick {
             background-color: #FFF;
             border: 2px solid #000000;
-            color: red;
+            color: #03a709;
             padding: 3px 12px;
           /*  font-size: 16px;
             height: 60px;*/
