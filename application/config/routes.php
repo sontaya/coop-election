@@ -54,7 +54,7 @@ $route['election_check'] = 'home/election_check';
 //$route['score_login'] = 'score/score_login';
 //$route['score'] = 'score/score';
 //$route['score_summary'] = 'home/score_summary';
-$route['s_signin'] = 'score/s_signin';
+$route['announce'] = 'score/announce_login';
 
 $route['403'] = 'login/error403';
 //Admin
