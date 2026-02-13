@@ -1,0 +1,105 @@
+# CodeIgniter.gitignore
+
+###############################
+# Sensitive Configuration Files
+###############################
+.env
+.env.local
+.env.*.local
+application/config/config.php
+application/config/database.php
+
+# But keep examples
+!application/config/config.php.example
+!application/config/database.php.example
+
+
+###############################
+# CodeIgniter Specific
+###############################
+application/cache/*
+!application/cache/index.html
+
+application/logs/*
+!application/logs/index.html
+
+logs/*
+!logs/index.html
+
+application/sessions/*
+
+ci_sessions/*
+!ci_sessions/index.html
+
+!application/*/.htaccess
+
+composer.lock
+
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/
+
+
+###############################
+# Backup Files
+###############################
+*.bak
+*.old
+*.backup
+backup/
+*.sql
+*.sql.gz
+
+###############################
+# IDE Files
+###############################
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vscode/*
+.idea/*
+
+###############################
+# OS Files
+###############################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+###############################
+# Composer
+###############################
+vendor/
+composer.phar
+composer.lock
+
+###############################
+# Node Modules
+###############################
+node_modules/
+npm-debug.log
+yarn-error.log
+
+documents/*

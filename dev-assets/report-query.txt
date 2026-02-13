@@ -1,0 +1,49 @@
+https://www.geeksforgeeks.org/generating-random-string-using-php/?ref=rp
+https://www.geeksforgeeks.org/generating-otp-one-time-password-in-php/
+
+
+
+random record
+select * from generateRandomRow order by rand() limit 1
+select * from tbl_vote order by rand() limit 1
+
+
+view:
+--vw_score
+SELECT
+	`tbl_candidate`.`id` AS `id`,
+	`tbl_candidate`.`c_number` AS `c_number`,
+	`tbl_candidate`.`candidate_name` AS `candidate_name`,
+	count( `tbl_vote_detail`.`id` ) AS `total`,
+	row_number() over ( ORDER BY count( `tbl_vote_detail`.`id` ) DESC, `tbl_candidate`.`c_number` ) AS `num_row` 
+FROM
+	(
+		`tbl_candidate`
+	JOIN `tbl_vote_detail` ON ( `tbl_candidate`.`id` = `tbl_vote_detail`.`c_num` )) 
+GROUP BY
+	`tbl_vote_detail`.`c_num` 
+ORDER BY
+	count( `tbl_vote_detail`.`id` ) DESC,
+	`tbl_candidate`.`c_number`
+
+--vw_unvote
+SELECT
+	`tbl_user`.`n_order` AS `n_order`,
+	`tbl_user`.`pcode` AS `pcode`,
+	`tbl_user`.`fullname` AS `fullname` 
+FROM
+	`tbl_user` 
+WHERE
+	! EXISTS ( SELECT 1 FROM `tbl_vote_detail` WHERE `tbl_vote_detail`.`pcode` = sha( `tbl_user`.`pcode` ) LIMIT 1 ) 
+ORDER BY
+	`tbl_user`.`n_order`
+
+--vw_vote
+SELECT
+	`tbl_otp`.`refcode` AS `refcode` 
+FROM
+	(
+		`tbl_otp`
+	JOIN `tbl_vote_detail` ON ( `tbl_otp`.`refcode` = `tbl_vote_detail`.`otpcode` )) 
+ORDER BY
+	`tbl_otp`.`refcode`

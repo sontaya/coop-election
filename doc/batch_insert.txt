@@ -1,0 +1,54 @@
+foreach ($afterTripQuery as $sendAfter) { 
+    $this->db->insert('tableName',array('columnName',$sendAfter['columnName'])) 
+}
+==========================================
+$arrayBatch =  array(); 
+foreach ($afterTripQuery as $sendAfter) {
+     $arrayBatch[] = array('columnName'=>$sendAfter['columnName']);  
+} 
+$this->db->insert_batch('tableName', $arrayBatch);
+
+==========================================
+public function addblog($value) { 
+    $this->db->insert('blogs',$value); 
+    return $this->db->insert_id(); 
+}
+
+==========================================
+$data['b_slug'] = $this->input->post('blog_slug',true);//fetching the data from the  html 
+$blogtags = array(); 
+foreach ($tags as $tag) {    
+    $blogtags[] = array(
+    'blog_id'=>$blogId,//this is current blog id       
+    'tag_name'=>$tag,       
+    'tag_created'=> date("Y-m-d h:i:sa")    
+    ); 
+} 
+$this->db->insert_batch('tags', $arrayBatch);
+
+
+==========================================
+$blogtags = array(); 
+foreach ($tags as $tag) {    
+    $blogtags[] = array(       
+    'blog_id'=>$blogId,//this is current blog id       
+    'tag_name'=>$tag,    
+    ); 
+} 
+$this->db->update_batch('tags', $arrayBatch,'blog_id');//pass the columnName in the third parameter
+
+
+==========================================
+#delete your multiple records with a single query It's very simple just 
+use the where_in method in query builder  $this->db->where_in('columName',array())
+
+$blogtags = array(); 
+foreach ($tags as $tag) {    
+    $blogtags[] = $tag['tagId'];    
+); 
+} 
+
+public function deleteTags($blogtags) {
+  $this->db->where_in('tagId', $data);  
+  $this->db->delete('tags'); 
+}

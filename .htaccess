@@ -1,0 +1,40 @@
+# ป้องกัน .env
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
+
+# ป้องกัน composer files
+<FilesMatch "composer\.(json|lock)">
+    Require all denied
+</FilesMatch>
+
+# ป้องกันไฟล์อื่นๆ ที่สำคัญ (เพิ่มเติม)
+<FilesMatch "^\.git">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "\.md$">
+    Require all denied
+</FilesMatch>
+
+
+<ifmodule mod_headers.c="">
+   SetEnvIf Origin "^(.*\.domain\.com)$" ORIGIN_SUB_DOMAIN=$1
+   Header set Access-Control-Allow-Origin "%{ORIGIN_SUB_DOMAIN}e" env=ORIGIN_SUB_DOMAIN
+   Header set Access-Control-Allow-Methods: "*"
+   Header set Access-Control-Allow-Headers: "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+</ifmodule>
+
+
+<IfModule mod_mime.c>
+    AddType text/javascript .mjs
+</IfModule>
+
+
+RewriteEngine on
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+#--Replace last .htaccess line with this line
+#RewriteRule ^(.*)$ index.php?/$1 [L,QSA]

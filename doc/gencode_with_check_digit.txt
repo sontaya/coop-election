@@ -1,0 +1,131 @@
+if (!function_exists('generateNumericOTP')) {
+    function generateNumericOTP($n) { 
+    //$n = 6; 
+    //print_r(generateNumericOTP($n));
+    //561862
+
+    // Take a generator string which consist of 
+    // all numeric digits 
+        $generator = "1357902468"; 
+
+    // Iterate for n-times and pick a single character 
+    // from generator and append it to $result 
+
+    // Login for generating a random character from generator 
+    //     ---generate a random number 
+    //     ---take modulus of same with length of generator (say i) 
+    //     ---append the character at place (i) from generator to result 
+
+        $result = ""; 
+
+        for ($i = 1; $i <= $n; $i++) { 
+            $result .= substr($generator, (rand()%(strlen($generator))), 1); 
+        } 
+
+    // Return result 
+        return $result; 
+    } 
+
+}
+
+if (!function_exists('generateLotto')) {
+    function generateLotto($n) { 
+        $count = $n;
+        $highball = 45;
+        $numbers = range(0, $highball);
+        shuffle($numbers);
+        $drawn = array_slice($numbers, - $count);
+        sort($drawn);
+
+        return implode(" - ", $drawn);
+    } 
+
+}
+
+if (!function_exists('generateChecksum')) {
+    function  generateChecksum($value) { 
+      if (!is_numeric($value)) {
+        throw new \InvalidArgumentException(__FUNCTION__ . ' can only accept numeric values.');
+     }
+
+      // Force the value to be a string so we can work with it like a string.
+      $value = (string) $value;
+
+      // Set some initial values up.
+      $length = strlen($value);
+      $parity = $length % 2;
+      $sum = 0;
+
+      for ($i = $length - 1; $i >= 0; --$i) {
+        // Extract a character from the value.
+        $char = $value[$i];
+        if ($i % 2 != $parity) {
+          $char *= 2;
+          if ($char > 9) {
+            $char -= 9;
+          }
+        }
+        // Add the character to the sum of characters.
+        $sum += $char;
+      }
+
+      // Return the value of the sum multiplied by 9 and then modulus 10.
+      return ($sum * 9) % 10;
+    } 
+
+}
+
+
+if (!function_exists('validateFCode')) {
+    function validateFCode($value) { 
+        $valid = false;
+        $extractedChecksum = substr($value, -1);
+
+        // Extract the value.
+        $extractedValue = substr($value, 0, -1);
+
+        // Calculate the checksum on the extracted value.
+        $calcuatedChecksum = generateChecksum($extractedValue);
+
+        // Compare!
+        if ($extractedChecksum == $calcuatedChecksum) {
+          //echo 'Number is valid';
+           $valid = true;
+        }
+        return $valid;
+    } 
+
+}
+==================================================
+USE:
+public function genOtp(){
+
+       /* for($i=1;$i<=530;$i++){
+            $otpcode = generateNumericOTP(5);            
+            $newotp =  $otpcode . generateChecksum($otpcode);
+            echo $newotp ." <--> " . validateFCode($newotp)."</br>";            
+        }*/
+
+        $arrayBatch =  array(); 
+        for($i=1;$i<=530;$i++){
+            $otpcode = generateNumericOTP(5);            
+            $newotp =  $otpcode . generateChecksum($otpcode);
+            $arrayBatch[] = array('refcode'=>$newotp);              
+         }
+        //$this->db->insert_batch('tbl_otp', $arrayBatch);
+         print_r($arrayBatch);
+
+        /*foreach ($afterTripQuery as $sendAfter) {
+             $arrayBatch[] = array('columnName'=>$sendAfter['columnName']);  
+        }
+        $this->db->insert_batch('tableName', $arrayBatch);
+         */
+
+        //$sql="insert tbl_otp (refcode) values('" .generateNumericOTP(5)."')";
+        //$query = $this->db->query($sql);  
+    }
+
+    /*public function chkOtp(){
+        echo $this->validateFCode('010165') ."</br>";
+       
+    }*/
