@@ -33,7 +33,7 @@
       }
 
     .col img{
-            height:80px;
+            height:120px;
             width: 100%;
             cursor: pointer;
             transition: transform 1s;
@@ -70,11 +70,11 @@
             padding: 3px 12px;
           /*  font-size: 16px;
             height: 60px;*/
-            width: 80x;
+            width: 120x;
             /*border-radius: 100%;*/
         }
         .tick i{
-          font-size:70px;
+          font-size:90px;
         }
 
         /* Card overrides */
@@ -92,6 +92,16 @@
           background: linear-gradient(135deg, #ef4444, #dc2626);
           border-bottom: none;
         }
+
+				.vote-card-body {
+					padding-top: 0.5rem;
+					padding-bottom: 0.5rem;
+				}
+
+				 .card-body-no-vote {
+					padding-top: 0.5rem;
+					padding-bottom: 0.5rem;
+				}
 
         /* Navbar override */
         .navbar.bg-dark1 {
@@ -122,6 +132,13 @@
         .btn-vote-submit:active {
           transform: translateY(0);
         }
+
+				.candidate-name-label {
+					display: block;
+					margin-bottom: 0.1rem;
+					margin-top: -10px;
+					font-weight: 500;
+				}
 </style>
 
 
@@ -142,18 +159,9 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div style="color:#fff;">
           <div style="font-size: 20px; font-weight: 600;">ลงคะแนนเลือกตั้งคณะกรรมการดำเนินการสหกรณ์ออมทรัพย์</div>
-          <div style="font-size: 14px; opacity: 0.85;">มหาวิทยาลัยสวนดุสิต จำกัด ประจำปี 2568</div>
+          <div style="font-size: 14px; opacity: 0.85;">มหาวิทยาลัยสวนดุสิต จำกัด ประจำปี 2569</div>
         </div>
-   <ul class="navbar-nav mr-auto">
-
-         <!-- <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>-->
-
-        </ul>
+   			<ul class="navbar-nav mr-auto"></ul>
         <a class="btn btn-outline-success my-2 my-sm-0"  href="<?php echo base_url()?>login/signout">ออกจากระบบ</a>
       </div>
     </div>
@@ -171,7 +179,7 @@
           <div class="card-header">
             <h3 class="card-title">1.รายชื่อผู้สมัครประธานสหกรณ์</h3> <span class="text-warning">(เลือกผู้สมัครได้ 1 คน) </span>
           </div>
-          <div class="card-body">
+          <div class="card-body vote-card-body">
             <div class="row">
 
              <?php foreach ($cds1 as $key => $r){ ?>
@@ -180,13 +188,13 @@
                  <input type="checkbox"  class="d-none candidate1 imgbgchk" name="candidate_id1[]" value="<?php echo $r->id; ?>" title='1' id="chk_<?php echo $r->id;?>" />
 
                         <label for="chk_<?php echo $r->id; ?>">
-                          <img src="<?php echo base_url();?>uploads/2569/<?php echo $r->picture;?>" alt="Image<?php echo $r->c_number; ?>" width="80px">
+                          <img src="<?php echo base_url();?>uploads/2569/<?php echo $r->picture;?>" alt="Image<?php echo $r->c_number; ?>" width="90px">
 
                           <div class="tick_container">
                             <div class="tick"><i class="fa fa-times" aria-hidden="true" ></i></div>
                           </div>
                         </label><br>
-                        <label style="font-size: 14px"><?php echo $r->candidate_name; ?></label>
+                        <label class="candidate-name-label" style="font-size: 14px"><?php echo $r->candidate_name; ?></label>
 
               </div>
 
@@ -198,11 +206,11 @@
     </div>
     <div class="col-md-2">
 
-     <div class="card card-danger">
-      <div class="card-header">
-        <h6>ไม่ประสงค์ลงคะแนน</h6>
+     <div class="card card-danger ">
+      <div class="card-header text-center">
+        <h6>ไม่ลงคะแนน</h6>
       </div>
-      <div class="card-body">
+      <div class="card-body card-body-no-vote">
         <div class="row">
            <div class="col col-lg-12 col-md-12 col-sm-12 col-12 text-center">
                  <input type="checkbox"  class="d-none no_candidate1 imgbgchk" name="no_candidate1" value="0" title='1' id="no_candidate1" />
@@ -214,7 +222,7 @@
                             <div class="tick"><i class="fa fa-times" aria-hidden="true" ></i></div>
                           </div>
                         </label><br>
-                    <!--    <label style="font-size: 11px">ไม่ประสงค์ลงคะแนน</label> -->
+                    <!--    <label style="font-size: 11px">ไม่ลงคะแนน</label> -->
 
               </div>
          <!-- <input class="no_candidate" type="checkbox" name="no_candidate" value="0" id="no_candidate">-->
@@ -242,7 +250,7 @@
           <div class="card-header">
             <h3 class="card-title">2.รายชื่อผู้สมัครคณะกรรมการดำเนินการ</h3> <span class="text-warning">(เลือกผู้สมัครได้ 7 คน) </span>
           </div>
-          <div class="card-body">
+          <div class="card-body vote-card-body">
             <div class="row">
 
              <?php foreach ($cds2 as $key => $r2){ ?>
@@ -251,12 +259,12 @@
                  <input type="checkbox"  class="d-none candidate2 imgbgchk" name="candidate_id2[]" value="<?php echo $r2->id; ?>" title='2' id="chk_<?php echo $r2->id;?>" />
 
                         <label for="chk_<?php echo $r2->id; ?>">
-                          <img src="<?php echo base_url();?>uploads/2569/<?php echo $r2->picture;?>" alt="Image<?php echo $r2->c_number; ?>" width="80px">
+                          <img src="<?php echo base_url();?>uploads/2569/<?php echo $r2->picture;?>" alt="Image<?php echo $r2->c_number; ?>" width="120px">
                           <div class="tick_container">
                             <div class="tick"><i class="fa fa-times" aria-hidden="true" ></i></div>
                           </div>
                         </label><br>
-                         <label style="font-size: 14px"><?php echo $r2->candidate_name; ?></label>
+                         <label class="candidate-name-label" style="font-size: 14px"><?php echo $r2->candidate_name; ?></label>
 
               </div>
 
@@ -268,10 +276,10 @@
     <div class="col-md-2">
 
      <div class="card card-danger">
-      <div class="card-header">
-        <h6>ไม่ประสงค์ลงคะแนน</h6>
+      <div class="card-header text-center">
+        <h6>ไม่ลงคะแนน</h6>
       </div>
-      <div class="card-body">
+      <div class="card-body card-body-no-vote">
         <div class="col col-lg-12 col-md-12 col-sm-12 col-12 text-center">
                  <input type="checkbox"  class="d-none no_candidate2 imgbgchk" name="no_candidate2" value="0" title='2' id="no_candidate2" />
 
@@ -282,7 +290,7 @@
                             <div class="tick"><i class="fa fa-times" aria-hidden="true" ></i></div>
                           </div>
                         </label><br>
-                     <!--   <label style="font-size: 11px">ไม่ประสงค์ลงคะแนน</label> -->
+                     <!--   <label style="font-size: 11px">ไม่ลงคะแนน</label> -->
 
               </div>
 
@@ -311,7 +319,7 @@
           <div class="card-header">
             <h3 class="card-title">3.รายชื่อผู้สมัครผู้ตรวจสอบกิจการ</h3> <span class="text-warning">(เลือกผู้สมัครได้ 3 คน) </span>
           </div>
-          <div class="card-body">
+          <div class="card-body vote-card-body">
             <div class="row">
 
              <?php foreach ($cds3 as $key => $r3){ ?>
@@ -320,12 +328,12 @@
                  <input type="checkbox"  class="d-none candidate3 imgbgchk" name="candidate_id3[]" value="<?php echo $r3->id; ?>" title='2' id="chk_<?php echo $r3->id;?>" />
 
                         <label for="chk_<?php echo $r3->id; ?>">
-                          <img src="<?php echo base_url();?>uploads/2569/<?php echo $r3->picture;?>" alt="Image<?php echo $r3->c_number; ?>" width="80px">
+                          <img src="<?php echo base_url();?>uploads/2569/<?php echo $r3->picture;?>" alt="Image<?php echo $r3->c_number; ?>" width="120px">
                           <div class="tick_container">
                             <div class="tick"><i class="fa fa-times" aria-hidden="true" ></i></div>
                           </div>
                         </label><br>
-                         <label style="font-size: 14px"><?php echo $r3->candidate_name; ?></label>
+                         <label class="candidate-name-label" style="font-size: 14px"><?php echo $r3->candidate_name; ?></label>
 
               </div>
 
@@ -337,10 +345,10 @@
     <div class="col-md-2">
 
      <div class="card card-danger">
-      <div class="card-header">
-        <h6>ไม่ประสงค์ลงคะแนน</h6>
+      <div class="card-header text-center">
+        <h6>ไม่ลงคะแนน</h6>
       </div>
-      <div class="card-body">
+      <div class="card-body card-body-no-vote">
         <div class="col col-lg-12 col-md-12 col-sm-12 col-12 text-center">
                  <input type="checkbox" class="d-none no_candidate3 imgbgchk" name="no_candidate3" value="0" title='3' id="no_candidate3" />
 
@@ -351,7 +359,7 @@
                             <div class="tick"><i class="fa fa-times" aria-hidden="true" ></i></div>
                           </div>
                         </label><br>
-                     <!--   <label style="font-size: 11px">ไม่ประสงค์ลงคะแนน</label> -->
+                     <!--   <label style="font-size: 11px">ไม่ลงคะแนน</label> -->
 
               </div>
 
@@ -383,20 +391,6 @@
 </form>
 
 </div>
-
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 ">
-        <div>
-          Copyright &copy; 2569 มหาวิทยาลัยสวนดุสิต
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</footer>
-
 
 <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/sweetalert2/sweetalert2.min.css">
 <script src="<?php echo base_url();?>assets/admin/plugins/sweetalert2/sweetalert2.all.min.js"></script>

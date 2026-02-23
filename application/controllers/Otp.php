@@ -1,14 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/** @property CI_Router $router */
 class Otp extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-       /* if (!isset($this->session->userdata['logged_in']))
+        $exclude = array('election_check', 'do_election_check');
+        if (!in_array($this->router->method, $exclude) && !isset($this->session->userdata['logged_in']))
         {
             redirect('login');
-        }*/
+        }
 
         $this->load->model(array('candidate_model','otp_model','user_model'));
         $this->load->helper('general');

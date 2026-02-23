@@ -16,12 +16,6 @@ class Login extends MY_Controller {
     {
         $data['title'] = 'มหาวิทยาลัยสวนดุสิต';
 
-        // set js and css scripts to be loaded
-        //$data['css_scripts'] = array('vendor/hover-min','vendor/sweetalert2/sweetalert2.min');
-        //$data['js_scripts'] = array('vendor/sweetalert2/sweetalert2.min','js_module/register','js_module/yt');
-
-       // $data['slides'] = $this->slide_model->get_all_slide();
-        //$data['blogs'] = $this->blog_model->blog_list_limit(7);
         $data['myip'] = get_myclient_ip();
         $this->data = $data;
         $this->load->view('coop69/login',$data);
