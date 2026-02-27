@@ -237,9 +237,8 @@
 
 <!-- Header -->
 <div class="score-header">
-  <img src="<?php echo base_url();?>uploads/sducoop.jpg" alt="SDU Coop" class="logo-img">
-  <h4><i class="fas fa-chart-bar" style="margin-right:6px;"></i> ผลการเลือกตั้งคณะกรรมการดำเนินการ<br>สหกรณ์ออมทรัพย์ มหาวิทยาลัยสวนดุสิต จำกัด</h4>
-  <div class="subtitle">ประจำปี 2569</div>
+  <img src="<?php echo base_url();?>uploads/sducoop.jpg" alt="SDU Coop" class="img-fluid logo-img">
+  <h4><i class="fas fa-chart-bar" style="margin-right:6px;"></i> ผลการเลือกตั้งคณะกรรมการดำเนินการ สหกรณ์ออมทรัพย์ มหาวิทยาลัยสวนดุสิต จำกัด ประจำปี 2569</h4>
 </div>
 
 <main role="main" class="container">
@@ -263,11 +262,11 @@
             </thead>
             <tbody>
               <?php foreach ($score1 as $key => $r){ ?>
-              <tr class="<?php echo ($r->row_num <= 1) ? 'elected' : ''; ?>">
+              <tr class="<?php echo ($r->score_order1 <= 1) ? 'elected' : ''; ?>">
                 <td><span class="badge-number"><?php echo $r->c_number;?></span></td>
                 <td class="name-col"><?php echo $r->candidate_name;?></td>
-                <td><span class="score-total"><?php echo $r->total;?></span></td>
-                <td><span class="badge-rank"><?php echo $r->row_num;?></span></td>
+                <td><span class="score-total"><?php echo $r->score;?></span></td>
+                <td><span class="badge-rank"><?php echo $r->score_order1;?></span></td>
               </tr>
               <?php } ?>
             </tbody>
@@ -294,11 +293,11 @@
             </thead>
             <tbody>
               <?php foreach ($score2 as $key => $r2){ ?>
-              <tr class="<?php echo ($r2->row_num <= 7) ? 'elected' : ''; ?>">
+              <tr class="<?php echo ($r2->score_order1 <= 7) ? 'elected' : ''; ?>">
                 <td><span class="badge-number"><?php echo $r2->c_number;?></span></td>
                 <td class="name-col"><?php echo $r2->candidate_name;?></td>
-                <td><span class="score-total"><?php echo $r2->total;?></span></td>
-                <td><span class="badge-rank"><?php echo $r2->row_num;?></span></td>
+                <td><span class="score-total"><?php echo $r2->score;?></span></td>
+                <td><span class="badge-rank"><?php echo $r2->score_order1;?></span></td>
               </tr>
               <?php } ?>
             </tbody>
@@ -325,11 +324,11 @@
             </thead>
             <tbody>
               <?php foreach ($score3 as $key => $r3){ ?>
-              <tr class="<?php echo ($r3->row_num <= 3) ? 'elected' : ''; ?>">
+              <tr class="<?php echo ($r3->score_order1 <= 3) ? 'elected' : ''; ?>">
                 <td><span class="badge-number"><?php echo $r3->c_number;?></span></td>
                 <td class="name-col"><?php echo $r3->candidate_name;?></td>
-                <td><span class="score-total"><?php echo $r3->total;?></span></td>
-                <td><span class="badge-rank"><?php echo $r3->row_num;?></span></td>
+                <td><span class="score-total"><?php echo $r3->score;?></span></td>
+                <td><span class="badge-rank"><?php echo $r3->score_order1;?></span></td>
               </tr>
               <?php } ?>
             </tbody>
